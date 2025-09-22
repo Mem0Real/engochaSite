@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Play, ZoomIn, Image, Video, FileText } from 'lucide-react';
+import { LazyAutoplayVideo } from './LazyAutoplay';
 
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -22,6 +23,7 @@ const Gallery: React.FC = () => {
       description: 'Watch the complete injera-making process',
       thumbnail: 'demo-video',
       duration: '2:45',
+      src: '/three.mp4',
     },
     {
       id: 3,
@@ -49,6 +51,7 @@ const Gallery: React.FC = () => {
       description: 'Precision spiral pattern dispensing',
       thumbnail: 'batter-demo',
       duration: '1:30',
+      src: '/batter.mp4',
     },
     {
       id: 6,
@@ -112,7 +115,7 @@ const Gallery: React.FC = () => {
             <div className='absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20'></div>
           )}
 
-          <div className='text-center z-10'>
+          {/* <div className='text-center z-10'>
             <TypeIcon
               className={`w-16 h-16 mx-auto mb-4 ${
                 item.type === 'video' ? 'text-white' : item.type === 'document' ? 'text-amber-600' : 'text-gray-600'
@@ -126,17 +129,32 @@ const Gallery: React.FC = () => {
             {item.type === 'document' && (
               <div className='bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium'>{item.fileType}</div>
             )}
-          </div>
+          </div> */}
+          {item.type === 'video' ? (
+            <LazyAutoplayVideo
+              autoplay={false}
+              src={item.src} // Replace with your video path
+            />
+          ) : (
+            <div className='text-center z-10'>
+              <TypeIcon
+                className={`w-16 h-16 mx-auto mb-4 ${
+                  item.type === 'video' ? 'text-white' : item.type === 'document' ? 'text-amber-600' : 'text-gray-600'
+                }`}
+              />
+              <div className='bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium'>{item.fileType}</div>
+            </div>
+          )}
 
           {/* Hover Overlay */}
-          <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
+          {/* <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
             <div className='text-white text-center'>
               <TypeIcon className='w-12 h-12 mx-auto mb-2' />
               <p className='font-medium'>
                 {item.type === 'video' ? 'Play Video' : item.type === 'document' ? 'View Document' : 'View Full Size'}
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Content */}
