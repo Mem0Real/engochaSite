@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Download, FileText, BarChart3, Wrench, Award, Lock, Users, Mail } from 'lucide-react';
+import PdfViewer from './PdfModal';
+import PdfModal from './PdfModal';
 
 const Downloads: React.FC = () => {
   const downloadItems = [
@@ -70,15 +72,18 @@ const Downloads: React.FC = () => {
   const [showEmailForm, setShowEmailForm] = React.useState(false);
   const [selectedDownload, setSelectedDownload] = React.useState<any>(null);
 
+  const [openPdf, setOpenPdf] = useState(false);
+
   const filteredItems =
     selectedCategory === 'All' ? downloadItems : downloadItems.filter((item) => item.category === selectedCategory);
 
   const handleDownload = (item: any) => {
     if (item.restricted) {
-      setSelectedDownload(item);
-      setShowEmailForm(true);
+      // setSelectedDownload(item);
+      // setShowEmailForm(true);
     } else {
       // Direct download for unrestricted files
+      setOpenPdf(true);
       console.log('Downloading:', item.title);
     }
   };
@@ -152,6 +157,8 @@ const Downloads: React.FC = () => {
 
   return (
     <section id='downloads' className='py-20 bg-gray-50'>
+      <PdfModal isOpen={openPdf} onClose={() => setOpenPdf(false)} file='/doc.pdf' />
+
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
         <div className='text-center mb-16'>
@@ -230,7 +237,6 @@ const Downloads: React.FC = () => {
           })}
         </div>
       </div>
-
       {/* Email Capture Modal */}
       <EmailCaptureModal />
     </section>

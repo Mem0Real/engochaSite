@@ -7,6 +7,16 @@ const Gallery: React.FC = () => {
 
   const galleryItems = [
     {
+      id: 0,
+      type: 'video',
+      category: 'injera',
+      title: 'First Prototype',
+      description: 'The first iteration of Engocha',
+      thumbnail: 'comparison',
+      fullSize: 'comparison-full',
+      src: '/first_pro.mp4',
+    },
+    {
       id: 1,
       type: 'image',
       category: 'prototype',
@@ -56,15 +66,6 @@ const Gallery: React.FC = () => {
     {
       id: 6,
       type: 'image',
-      category: 'injera',
-      title: 'Before & After Comparison',
-      description: 'Manual vs automated production results',
-      thumbnail: 'comparison',
-      fullSize: 'comparison-full',
-    },
-    {
-      id: 7,
-      type: 'image',
       category: 'prototype',
       title: 'Griddle Surface Detail',
       description: 'Ceramic-coated traditional clay composite',
@@ -72,7 +73,7 @@ const Gallery: React.FC = () => {
       fullSize: 'griddle-detail-full',
     },
     {
-      id: 8,
+      id: 7,
       type: 'document',
       category: 'technical',
       title: 'Patent Documentation',
