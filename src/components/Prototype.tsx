@@ -107,7 +107,7 @@ const Prototype: React.FC = () => {
         </div>
 
         {/* Prototype Gallery & Stats */}
-        <div className='grid grid-cols-2 gap-12 mb-16 w-full'>
+        <div className='grid lg:grid-cols-2 gap-12 mb-16 w-full'>
           {/* Prototype Images */}
           <div className='space-y-6'>
             <h3 className='text-2xl font-bold text-gray-900 mb-6'>Prototype Gallery</h3>
