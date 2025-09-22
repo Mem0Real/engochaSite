@@ -1,53 +1,76 @@
-import React, { FC, useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
+import { FC, useState } from 'react';
 
-// Import the worker as a Vite web worker
-// pdfjs-dist v3+ ships the worker entry at legacy/build/pdf.worker
-// ?worker makes Vite bundle it as a real Worker
-import pdfWorker from 'pdfjs-dist/legacy/build/pdf.worker?worker';
+import { pdfjs, Document, Page } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerPort = new pdfWorker();
+import type { PDFDocumentProxy } from 'pdfjs-dist';
 
-interface PdfModalProps {
+pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
+const options = {
+  cMapUrl: '/cmaps/',
+  standardFontDataUrl: '/standard_fonts/',
+  wasmUrl: '/wasm/',
+};
+
+interface PdfViewerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  file: string;
 }
 
-const PdfModal: FC<PdfModalProps> = ({ isOpen, onClose, file }) => {
-  const [numPages, setNumPages] = useState<number>(0);
+type PDFFile = string | File | null;
+
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
+export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
+  const [numPages, setNumPages] = useState<number>(1);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  const [file, setFile] = useState<PDFFile>('./sample.pdf');
+
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  };
+
+  const goToPrevPage = () => setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
+
+  const goToNextPage = () => setPageNumber(pageNumber + 1 >= numPages ? numPages : pageNumber + 1);
 
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50'>
-      <div className='bg-white rounded-lg shadow-lg w-11/12 max-w-4xl h-5/6 flex flex-col overflow-hidden'>
-        <div className='flex justify-between items-center p-4 border-b'>
-          <h2 className='text-lg font-semibold'>PDF Preview</h2>
+    <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50' onClick={onClose}>
+      <div
+        className='bg-white w-11/12 max-w-5xl h-[85vh] rounded shadow-lg flex flex-col'
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className='flex justify-between items-center p-2 border-b'>
+          <h2 className='text-lg font-semibold'>PDF Viewer</h2>
           <button onClick={onClose} className='px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600'>
             Close
           </button>
         </div>
 
-        <div className='flex-1 overflow-auto p-4'>
-          <Document
-            file={file}
-            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-            onLoadError={(err) => console.error('PDF load error:', err)}
-          >
-            {Array.from(new Array(numPages), (_, idx) => (
-              <Page
-                key={`page_${idx + 1}`}
-                pageNumber={idx + 1}
-                renderTextLayer={false}
-                renderAnnotationLayer={false}
-              />
-            ))}
-          </Document>
-        </div>
+        <nav>
+          <button onClick={goToPrevPage}>Prev</button>
+          <button onClick={goToNextPage}>Next</button>
+          <p>
+            Page {pageNumber} of {numPages}
+          </p>
+        </nav>
+
+        <Document
+          file='document.pdf' // Path to your PDF file.
+          onLoadSuccess={onDocumentLoadSuccess}
+          options={options}
+        >
+          {/* <Page pageNumber={pageNumber} /> */}
+          {Array.from(new Array(numPages), (_el, index) => (
+            <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+          ))}
+        </Document>
       </div>
     </div>
   );
 };
-
-export default PdfModal;

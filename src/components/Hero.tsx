@@ -1,15 +1,8 @@
 import React from 'react';
-import { ArrowRight, Shield, Zap, Users } from 'lucide-react';
+import { Shield, Zap, Users } from 'lucide-react';
 import { LazyAutoplayVideo } from './LazyAutoplay';
 
 const Hero: React.FC = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section id='home' className='relative bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 overflow-hidden'>
       {/* Background Pattern */}
@@ -59,23 +52,6 @@ const Hero: React.FC = () => {
                 <div className='text-2xl lg:text-3xl font-bold text-amber-600'>100%</div>
                 <div className='text-sm text-gray-600'>Hands-Free</div>
               </div>
-            </div>
-
-            {/* CTAs */}
-            <div className='flex flex-col sm:flex-row gap-4'>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className='inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-amber-600 rounded-xl hover:bg-amber-700 transform hover:scale-105 transition-all duration-200 shadow-lg'
-              >
-                Request Demo
-                <ArrowRight className='w-5 h-5 ml-2' />
-              </button>
-              <button
-                onClick={() => scrollToSection('downloads')}
-                className='inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-amber-600 bg-white/80 backdrop-blur-sm rounded-xl hover:bg-white border-2 border-amber-600 transition-all duration-200'
-              >
-                Download Investor Pack
-              </button>
             </div>
 
             {/* Trust Indicators */}
