@@ -51,8 +51,10 @@ const Footer: React.FC = () => {
           <div className='lg:col-span-1 space-y-6'>
             {/* Logo */}
             <div className='flex items-center space-x-3'>
-              <div className='w-10 h-10 bg-amber-600 rounded-lg flex items-center justify-center'>
-                <span className='text-white font-bold text-lg'>I</span>
+              <div className='w-10 h-10 bg-transparent rounded-lg flex items-center justify-center'>
+                <span className='text-white font-bold text-lg'>
+                  <img src='/images/logo.png' className='w-8' />
+                </span>
               </div>
               <div className='text-xl font-bold'>
                 Engocha
@@ -69,11 +71,11 @@ const Footer: React.FC = () => {
             <div className='space-y-3'>
               <div className='flex items-center text-gray-300'>
                 <Mail className='w-5 h-5 mr-3 text-amber-400' />
-                <span>info@Engocha.com</span>
+                <span>engocha@gmail.com</span>
               </div>
               <div className='flex items-center text-gray-300'>
                 <Phone className='w-5 h-5 mr-3 text-amber-400' />
-                <span>+251 911 123 456</span>
+                <span>+251 913 085 993</span>
               </div>
               <div className='flex items-center text-gray-300'>
                 <MapPin className='w-5 h-5 mr-3 text-amber-400' />
