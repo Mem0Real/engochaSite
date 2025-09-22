@@ -39,6 +39,12 @@ const Header: React.FC = () => {
               Product
             </button>
             <button
+              onClick={() => scrollToSection('gallery')}
+              className='text-gray-700 hover:text-amber-600 transition-colors'
+            >
+              Gallery
+            </button>
+            <button
               onClick={() => scrollToSection('technology')}
               className='text-gray-700 hover:text-amber-600 transition-colors'
             >
@@ -61,12 +67,6 @@ const Header: React.FC = () => {
               className='text-gray-700 hover:text-amber-600 transition-colors'
             >
               Investors
-            </button>
-            <button
-              onClick={() => scrollToSection('gallery')}
-              className='text-gray-700 hover:text-amber-600 transition-colors'
-            >
-              Gallery
             </button>
           </div>
 

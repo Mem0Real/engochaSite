@@ -12,15 +12,15 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className='min-h-screen bg-white'>
       <Header />
       <Hero />
       <Product />
+      <Gallery />
       <Technology />
       <Prototype />
       <Franchise />
       <Investors />
-      <Gallery />
       <Downloads />
       <Contact />
       <Footer />

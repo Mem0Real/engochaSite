@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Play, Shield, Zap, Users } from 'lucide-react';
+import { ArrowRight, Shield, Zap, Users } from 'lucide-react';
+import { LazyAutoplayVideo } from './LazyAutoplay';
 
 const Hero: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
@@ -95,11 +96,9 @@ const Hero: React.FC = () => {
             <div className='relative bg-white rounded-2xl shadow-2xl overflow-hidden'>
               {/* Main Image Placeholder */}
               <div className='aspect-video bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center'>
-                <div className='text-center'>
-                  <Play className='w-16 h-16 text-amber-600 mx-auto mb-4' />
-                  <p className='text-lg font-semibold text-gray-700'>Watch Prototype Demo</p>
-                  <p className='text-sm text-gray-500'>See Engocha in action</p>
-                </div>
+                <LazyAutoplayVideo
+                  src='/hero.mp4' // Replace with your video path
+                />
               </div>
             </div>
           </div>
