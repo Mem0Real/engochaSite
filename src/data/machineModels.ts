@@ -1,0 +1,40 @@
+import { MachineModel } from '../types';
+
+export const machineModels: MachineModel[] = [
+  {
+    id: 'compact-1',
+    name: 'Engocha Compact',
+    griddleCount: '1 - 3',
+    throughputPieces: 90,
+    throughputKg: 900,
+    dimensions: '1.8m × 1.8m × 1.5m',
+    priceRange: '650,000 ETB',
+    useCase: 'Small restaurants, cafes',
+    power: '7.5kW',
+    targetMarket: 'Small Business',
+  },
+  {
+    id: 'standard-2',
+    name: 'Engocha Standard',
+    griddleCount: '4-7',
+    throughputPieces: 210,
+    throughputKg: 2100,
+    dimensions: '4.2m × 1.8m × 1.5m',
+    priceRange: '700,000 - 800,000 ETB',
+    useCase: 'Medium restaurants, hotels',
+    power: '17.5kW',
+    targetMarket: 'Commercial',
+  },
+  {
+    id: 'enterprise-8',
+    name: 'Engocha Enterprise',
+    griddleCount: '8-10',
+    throughputPieces: 300,
+    throughputKg: 3000,
+    dimensions: '6.0m × 1.8m × 2.0m',
+    priceRange: '900,000 - 1,100,000 ETB',
+    useCase: 'Export facilities, large production',
+    power: '25kW',
+    targetMarket: 'Enterprise',
+  },
+];
