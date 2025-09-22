@@ -48,17 +48,11 @@ const Footer: React.FC = () => {
       <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-16'>
         <div className='grid lg:grid-cols-4 gap-8'>
           {/* Company Info */}
-          <div className='lg:col-span-1 space-y-6'>
+          <div className='lg:col-span-1 space-y-6 mx-auto'>
             {/* Logo */}
-            <div className='flex items-center space-x-3'>
-              <div className='w-10 h-10 bg-transparent rounded-lg flex items-center justify-center'>
-                <span className='text-white font-bold text-lg'>
-                  <img src='../../public/images/logo.png' className='w-8' />
-                </span>
-              </div>
-              <div className='text-xl font-bold'>
-                Engocha
-                <div className='text-xs text-amber-400 font-medium'>Automated Injera Solutions</div>
+            <div className='flex items-center'>
+              <div className='w-18 h-18 bg-transparent rounded-lg flex items-center justify-center'>
+                <img src='/logo.png' className='w-48 rounded-full' />
               </div>
             </div>
 
@@ -185,7 +179,7 @@ const Footer: React.FC = () => {
           <div className='flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0'>
             <div className='text-gray-400 text-sm text-center md:text-left'>
               <p>
-                © 2024 Engocha. All rights reserved.
+                © 2026 Engocha. All rights reserved.
                 <span className='ml-2'>Patent: ET UM1207B1</span>
               </p>
             </div>
