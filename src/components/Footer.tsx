@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
             <div className='flex items-center space-x-3'>
               <div className='w-10 h-10 bg-transparent rounded-lg flex items-center justify-center'>
                 <span className='text-white font-bold text-lg'>
-                  <img src='/images/logo.png' className='w-8' />
+                  <img src='../../public/images/logo.png' className='w-8' />
                 </span>
               </div>
               <div className='text-xl font-bold'>
