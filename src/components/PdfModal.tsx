@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import { pdfjs, Document, Page } from 'react-pdf';
+import { pdfjs, Document } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
@@ -18,17 +18,6 @@ interface PdfViewerModalProps {
 }
 
 export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
-  const [numPages, setNumPages] = useState<number>(1);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-
-  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-    setNumPages(numPages);
-  };
-
-  const goToPrevPage = () => setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
-
-  const goToNextPage = () => setPageNumber(pageNumber + 1 >= numPages ? numPages : pageNumber + 1);
-
   if (!isOpen) return null;
 
   return (
@@ -47,24 +36,9 @@ export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <nav>
-          <button onClick={goToPrevPage}>Prev</button>
-          <button onClick={goToNextPage}>Next</button>
-          <p>
-            Page {pageNumber} of {numPages}
-          </p>
-        </nav>
-
-        <Document
-          file='/document.pdf' // Path to your PDF file.
-          onLoadSuccess={onDocumentLoadSuccess}
-          options={options}
-        >
-          {/* <Page pageNumber={pageNumber} /> */}
-          {Array.from(new Array(numPages), (_el, index) => (
-            <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-          ))}
-        </Document>
+        <div className='min-h-[82%]'>
+          <Document file='/document.pdf' options={options} />
+        </div>
       </div>
     </div>
   );
