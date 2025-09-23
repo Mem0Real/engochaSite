@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Download, FileText, BarChart3, Wrench, Award, Lock, Users, Mail } from 'lucide-react';
 import { PDFModal } from './PdfModal';
 
@@ -86,6 +86,11 @@ const Downloads: React.FC = () => {
       console.log('Downloading:', item.title);
     }
   };
+
+  useEffect(() => {
+    if(openPdf) document.body.classList.add("overflow-hidden")
+    else document.body.classList.add("overflow-auto")
+  }, [openPdf])
 
   const EmailCaptureModal = () =>
     showEmailForm && (

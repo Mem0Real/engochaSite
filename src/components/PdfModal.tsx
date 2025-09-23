@@ -4,8 +4,6 @@ import { pdfjs, Document, Page } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-import type { PDFDocumentProxy } from 'pdfjs-dist';
-
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 const options = {
@@ -19,15 +17,9 @@ interface PdfViewerModalProps {
   onClose: () => void;
 }
 
-type PDFFile = string | File | null;
-
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-
 export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
   const [numPages, setNumPages] = useState<number>(1);
   const [pageNumber, setPageNumber] = useState<number>(1);
-
-  const [file, setFile] = useState<PDFFile>('./sample.pdf');
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -40,7 +32,10 @@ export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50' onClick={onClose}>
+    <div
+      className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 overflow-scroll h-[90%]'
+      onClick={onClose}
+    >
       <div
         className='bg-white w-11/12 max-w-5xl h-[85vh] rounded shadow-lg flex flex-col'
         onClick={(e) => e.stopPropagation()}
