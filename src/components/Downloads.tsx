@@ -88,9 +88,9 @@ const Downloads: React.FC = () => {
   };
 
   useEffect(() => {
-    if(openPdf) document.body.classList.add("overflow-hidden")
-    else document.body.classList.add("overflow-auto")
-  }, [openPdf])
+    if (openPdf) document.body.classList.add('overflow-hidden');
+    else document.body.classList.remove('overflow-hidden');
+  }, [openPdf]);
 
   const EmailCaptureModal = () =>
     showEmailForm && (

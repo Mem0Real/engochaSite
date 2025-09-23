@@ -33,7 +33,7 @@ export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 overflow-scroll h-[90%]'
+      className='fixed inset-0 bg-black/60 flex items-center justify-center z-50 overflow-scroll h-74'
       onClick={onClose}
     >
       <div
