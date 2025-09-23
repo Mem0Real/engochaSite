@@ -61,7 +61,7 @@ export const PDFModal: FC<PdfViewerModalProps> = ({ isOpen, onClose }) => {
         </nav>
 
         <Document
-          file='document.pdf' // Path to your PDF file.
+          file='/document.pdf' // Path to your PDF file.
           onLoadSuccess={onDocumentLoadSuccess}
           options={options}
         >
